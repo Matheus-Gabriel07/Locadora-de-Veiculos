@@ -1,3 +1,12 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+/** Classe base de "Veiculo"
+ *  --------------------------
+ *  @version 1.0
+ *  @author Matheus Gabriel
+ */
+
 public abstract class Veiculo {
     private String marca;
     private String modelo;
@@ -50,5 +59,18 @@ public abstract class Veiculo {
     // Default method
     public double calcularConsumo() {
         return getCombustivel() * 5;
+    }
+    
+    // Default method
+    public String toString() {
+        return "Default";
+    }
+
+    //ArrayList de carros pre definidos
+    String[] CarrosDefault = {getModelo()};
+    ArrayList<String> ListaCarrosDefault = new ArrayList<String>(Arrays.asList(CarrosDefault));
+
+    public void exibirListaCarrosDefault() {
+        System.out.println(ListaCarrosDefault);
     }
 }
