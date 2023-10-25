@@ -19,6 +19,9 @@ class Cliente implements OpercoesVeiculos {
     String nome;
     int idade;
     String veiculoAlugado;
+    int rg;
+    int cpf;
+    String email;
     String[] carrosDisponiveis = { "Corsa cromado", "Carro 2", "Carro 3" };
     ArrayList<String> litarCarros = new ArrayList<String>(Arrays.asList(carrosDisponiveis));
     
@@ -29,6 +32,9 @@ class Cliente implements OpercoesVeiculos {
         this.idade = idade;
         this.nome = nome;
         this.veiculoAlugado = veiculoAlugado;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.email = email;
     }
 
     // Metodo Getter do atributo idade:
@@ -45,16 +51,55 @@ class Cliente implements OpercoesVeiculos {
     public String getVeiculoAlugado() {
         return veiculoAlugado;
     }
+
+    //MétodoGetter do atributo RG:
+    
+    public int getRg(){
+        return rg;
+    }
+
+    //Método Getter do atributo CPF:
+
+    public int getCpf(){
+        return cpf;
+    }
+
+    //Método Getter do atributo Email:
+
+    public String getEmail(){
+        return email;
+    }
+
     // Metodo Setter do atributo idade:
 
     public void setIdade(int idade) {
         this.idade = idade;
     }
+
     // Método Setter do atributo nome:
 
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    //Método Setter do atributo CPF:
+
+    public void setCpf(int cpf){
+        this.cpf = cpf;
+    }
+
+    //Método Setter do atributo RG:
+
+    public void setRg(int rg){
+        this.rg = rg;
+    }
+
+    //Método Setter do atributo Email:
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+
     // Método Setter do atributo veiculo alugado:
 
     public void setVeiculoAlugado(String veiculoAlugado) {
@@ -98,6 +143,7 @@ class Cliente implements OpercoesVeiculos {
         delay.timeDelay(2000);
 
         while (controle) {
+            delay.timeDelay(2000);
             System.out.println("Você já abasteceu o carro?\n" +
             "1- Sim\n" +
             "2- Não");
@@ -118,14 +164,15 @@ class Cliente implements OpercoesVeiculos {
     }
 
     public void consultarInformacoes() {
-        /*
-         * Nome do clinete:
-         * Idade do Cliente:
-         * Qual carro o cliente alugou?
-         * CPF:
-         * RG:
-         * Email: 
-         */
+
+        System.out.println("\t============Informações================/n");
+        System.out.println("Nome do cliente " + nome);
+        System.out.println("Idade do cliente " + idade);
+        System.out.println("Qual carro o clienete alugou " + veiculoAlugado);
+        System.out.println("CPF " + cpf);
+        System.out.println("RG " + rg);
+        System.out.println("Email " + email);
+       System.out.println("\t==========================================/n");
     }
 
 }
