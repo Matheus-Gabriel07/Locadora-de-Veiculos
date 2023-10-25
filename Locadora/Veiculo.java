@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-
 /** Classe base de "Veiculo"
  *  --------------------------
  *  @version 1.0
