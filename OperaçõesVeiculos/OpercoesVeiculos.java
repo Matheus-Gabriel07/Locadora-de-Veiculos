@@ -21,7 +21,9 @@ class Cliente implements OpercoesVeiculos {
     String veiculoAlugado;
     String[] carrosDisponiveis = { "Corsa cromado", "Carro 2", "Carro 3" };
     ArrayList<String> litarCarros = new ArrayList<String>(Arrays.asList(carrosDisponiveis));
+    
     Scanner sc = new Scanner(System.in);
+    Delay delay = new Delay();
 
     public Cliente(String nome, int idade, String veiculoAlugado) {
         this.idade = idade;
@@ -89,8 +91,30 @@ class Cliente implements OpercoesVeiculos {
     @Override
     public void abastecerVeiculo() {
         double litrosGastado = 10;
+        Boolean controle = true;
         System.out.println("Você está devolvendo o carro e precisa abastecer antes de devolver.\n" +
             "Você gastou " + litrosGastado + "L. Abasteça no posto de combústivel mais próximo.");
+
+        delay.timeDelay(2000);
+
+        while (controle) {
+            System.out.println("Você já abasteceu o carro?\n" +
+            "1- Sim\n" +
+            "2- Não");
+            int abasteceuSouN = sc.nextInt();
+
+            if(abasteceuSouN == 1) {
+                System.out.println("Vá para a conscessionária.");
+                controle = false;
+            } else if(abasteceuSouN == 2) {
+                System.out.println("Vá abastecer.");
+            } else {
+                System.out.println("Opção Inválida.");
+            }
+        }
+        
+        
+
     }
 
     public void consultarInformacoes() {
