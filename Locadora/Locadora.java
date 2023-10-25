@@ -10,6 +10,10 @@ public class Locadora {
     ArrayList<Object> arrayListaCliente = new ArrayList<Object>(Arrays.asList(listaClientes));
     ArrayList<Object> veiculosTotais = new ArrayList<Object>(Arrays.asList());
 
+    public  void start(String usuario) {
+        menuInical();
+    }
+
     public void menuInical() {
         boolean loopMenu = true;
 
