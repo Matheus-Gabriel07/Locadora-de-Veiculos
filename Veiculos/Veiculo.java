@@ -65,12 +65,4 @@ public abstract class Veiculo {
     public String toString() {
         return "Default";
     }
-
-    //ArrayList de carros pre definidos
-    String[] CarrosDefault = {getModelo()};
-    ArrayList<String> ListaCarrosDefault = new ArrayList<String>(Arrays.asList(CarrosDefault));
-
-    public void exibirListaCarrosDefault() {
-        System.out.println(ListaCarrosDefault);
-    }
 }
