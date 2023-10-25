@@ -159,7 +159,6 @@ class Cliente implements OpercoesVeiculos {
                     listarMotos.remove(motoAlugar);
                     System.out.println(listarMotos);
                     veicloAlugado = motoAlugar;
-                    
 
                 } else if (teste == false) {
                     System.out.println("Moto inexistente");
@@ -167,11 +166,38 @@ class Cliente implements OpercoesVeiculos {
             }
         }
         if (devolverOuAlugar == 2) {
-           if(veicloAlugado == null) {
-                System.out.println("Não tem veiculos para devolução");
-           } else {
-            
-           }
+            String defaultLogin = "123456";
+            String defaultSenha = "1234";
+            if (veicloAlugado == null) {
+                //System.out.println("Não tem veiculos para devolução");
+            } else {
+                boolean padraoLogin = true;
+                boolean padraoSenha = true;
+                while (padraoLogin) {
+                    System.out.println("Por favor inserir seu login: ");
+                    String login = sc.nextLine();
+                    boolean verifica = login.equals(defaultLogin);
+                    if (verifica) {
+                        padraoLogin = false;
+                        while (padraoSenha) {
+                            System.out.println("Por favor inserir a senha de segurança: ");
+                            String senha = sc.nextLine();
+                            boolean verificarSenha = senha.equals(defaultSenha);
+                            if (verificarSenha) {
+                                System.out.println("**VEICULO DEVOLVIDO COM SUCESSO**");
+                                padraoSenha = false;
+                            } else if (verificarSenha == false) {
+                                System.out.println("Senha incorreta");
+                            }
+                        }
+
+                    } else if (verifica == false) {
+                        System.out.println("login invalida");
+                    }
+                }
+
+            }
+
         }
 
     }
