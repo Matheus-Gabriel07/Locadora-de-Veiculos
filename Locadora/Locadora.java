@@ -15,6 +15,18 @@ public class Locadora {
     }
 
     public void menuInical() {
+        Carro ferrari = new Carro("Ferrari", "F40", 2010, 100, 2, 2000);
+        Carro palio = new Carro("Fiat", "Pálio", 2007, 100, 4, 230000);
+        Carro prisma = new Carro("Chevrolet", "Prisma", 2015, 100, 4, 150000);
+        Carro civic = new Carro("Honda", "Civic", 2017, 100, 4, 100000);
+        Carro bmw = new Carro("BMW", "320i", 2019, 100, 4, 120000);
+
+        veiculosTotais.add(ferrari);
+        veiculosTotais.add(palio);
+        veiculosTotais.add(prisma);
+        veiculosTotais.add(civic);
+        veiculosTotais.add(bmw);
+
         boolean loopMenu = true;
 
         do {
@@ -82,7 +94,7 @@ public class Locadora {
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
 
-                    // Buscar veiculos
+                    buscarVeiculo();
                     break;
 
                 case 8:
@@ -212,6 +224,14 @@ public class Locadora {
     }
 
     public void buscarVeiculo() {
+        System.out.println("Qual veículo você deseja procurar em nossa loja?");
+        String buscaVeiculo = sc.nextLine();
+
+        boolean verificarVeiculo = veiculosTotais.contains(buscaVeiculo);
+
+        if (verificarVeiculo == true) {
+            System.out.println("Veiculo dispónivel na loja.");
+        }
 
     }
 
