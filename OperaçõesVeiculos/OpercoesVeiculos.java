@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public interface OpercoesVeiculos {
 
-    public String alugarVeiculos();
+    public void alugarVeiculos();
 
     public void abastecerVeiculo();
 
@@ -20,9 +20,15 @@ class Cliente implements OpercoesVeiculos {
     int rg;
     int cpf;
     String email;
+
+    // Array de carros disponiveis
     String[] carrosDisponiveis = { "Corsa cromado", "Carro 2", "Carro 3" };
-    ArrayList<String> litarCarros = new ArrayList<String>(Arrays.asList(carrosDisponiveis));
-    
+    ArrayList<String> listarCarros = new ArrayList<String>(Arrays.asList(carrosDisponiveis));
+
+    // Array de motos disponiveis
+    String[] motosDisponiveis = { "Moto 1", "Moto 2", "Moto 3" };
+    ArrayList<String> listarMotos = new ArrayList<String>(Arrays.asList(motosDisponiveis));
+
     Scanner sc = new Scanner(System.in);
     Delay delay = new Delay();
 
@@ -30,9 +36,9 @@ class Cliente implements OpercoesVeiculos {
         this.idade = idade;
         this.nome = nome;
         this.veiculoAlugado = veiculoAlugado;
-        this.cpf = cpf;
-        this.rg = rg;
-        this.email = email;
+        // this.cpf = cpf;
+        // this.rg = rg;
+        // this.email = email;
     }
 
     // Metodo Getter do atributo idade:
@@ -50,21 +56,21 @@ class Cliente implements OpercoesVeiculos {
         return veiculoAlugado;
     }
 
-    //MétodoGetter do atributo RG:
-    
-    public int getRg(){
+    // MétodoGetter do atributo RG:
+
+    public int getRg() {
         return rg;
     }
 
-    //Método Getter do atributo CPF:
+    // Método Getter do atributo CPF:
 
-    public int getCpf(){
+    public int getCpf() {
         return cpf;
     }
 
-    //Método Getter do atributo Email:
+    // Método Getter do atributo Email:
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
@@ -80,21 +86,21 @@ class Cliente implements OpercoesVeiculos {
         this.nome = nome;
     }
 
-    //Método Setter do atributo CPF:
+    // Método Setter do atributo CPF:
 
-    public void setCpf(int cpf){
+    public void setCpf(int cpf) {
         this.cpf = cpf;
     }
 
-    //Método Setter do atributo RG:
+    // Método Setter do atributo RG:
 
-    public void setRg(int rg){
+    public void setRg(int rg) {
         this.rg = rg;
     }
 
-    //Método Setter do atributo Email:
+    // Método Setter do atributo Email:
 
-    public void setEmail(String email){
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -105,25 +111,57 @@ class Cliente implements OpercoesVeiculos {
     }
 
     @Override
-    public String alugarVeiculos() {
-        System.out.println(litarCarros);    
-        System.out.println("Digite o nome do carro que você deseja comprar");
-        String carroAlugar = sc.nextLine();
-        
-        boolean teste = litarCarros.contains(carroAlugar);
+    public void alugarVeiculos() {
+        System.out.println("Você deseja alugar ou devolver um veículo?\n" +
+                "1- Alugar\n" +
+                "2- Devolver");
+        int devolverOuAlugar = sc.nextInt();
 
-        if (teste == true) {
-            System.out.println("Carro Alugado");
-            litarCarros.remove(carroAlugar);
-            System.out.println(litarCarros);
-            System.out.println(carroAlugar);
-            return carroAlugar;
+        if (devolverOuAlugar == 1) {
+            System.out.println("Você deseja alugar um carro ou uma moto?\n" +
+                    "1- Carro \n" +
+                    "2- Moto");
+            int alugarCarroOuMoto = sc.nextInt();
+            delay.clearBuffer(sc);
 
-        } else if (teste == false) {
-            System.out.println("Carro inexistente");
-            return "Carro inexistente "; 
+            if (alugarCarroOuMoto == 1) {
+                System.out.println("Qual carro você deseja alugar?");
+                delay.timeDelay(1000);
+                System.out.println(listarCarros);
+                delay.timeDelay(1000);
+                String carroAlugar = sc.nextLine();
+
+                boolean teste = listarCarros.contains(carroAlugar);
+
+                if (teste == true) {
+                    System.out.println("Carro Alugado");
+                    listarCarros.remove(carroAlugar);
+                    System.out.println(listarCarros);
+                    System.out.println(carroAlugar);
+                } else if (teste == false) {
+                    System.out.println("Carro inexistente");
+                }
+            }
+            if (alugarCarroOuMoto == 2) {
+                System.out.println("Qual moto você deseja alugar?");
+                delay.timeDelay(1000);
+                System.out.println(listarMotos);
+                delay.timeDelay(1000);
+                String carroAlugar = sc.nextLine();
+
+                boolean teste = listarMotos.contains(carroAlugar);
+
+                if (teste == true) {
+                    System.out.println("Moto Alugado");
+                    listarMotos.remove(carroAlugar);
+                    System.out.println(listarMotos);
+                    System.out.println(carroAlugar);
+                } else if (teste == false) {
+                    System.out.println("Moto inexistente");
+                }
+            }
         }
-        return "Carro não alugado";
+
     }
 
     @Override
@@ -131,28 +169,26 @@ class Cliente implements OpercoesVeiculos {
         double litrosGastado = 10;
         Boolean controle = true;
         System.out.println("Você está devolvendo o carro e precisa abastecer antes de devolver.\n" +
-            "Você gastou " + litrosGastado + "L. Abasteça no posto de combústivel mais próximo.");
+                "Você gastou " + litrosGastado + "L. Abasteça no posto de combústivel mais próximo.");
 
         delay.timeDelay(2000);
 
         while (controle) {
             delay.timeDelay(2000);
             System.out.println("Você já abasteceu o carro?\n" +
-            "1- Sim\n" +
-            "2- Não");
+                    "1- Sim\n" +
+                    "2- Não");
             int abasteceuSouN = sc.nextInt();
 
-            if(abasteceuSouN == 1) {
+            if (abasteceuSouN == 1) {
                 System.out.println("Vá para a conscessionária.");
                 controle = false;
-            } else if(abasteceuSouN == 2) {
+            } else if (abasteceuSouN == 2) {
                 System.out.println("Vá abastecer.");
             } else {
                 System.out.println("Opção Inválida.");
             }
         }
-        
-        
 
     }
 
@@ -166,7 +202,7 @@ class Cliente implements OpercoesVeiculos {
         System.out.println("CPF " + cpf);
         System.out.println("RG " + rg);
         System.out.println("Email " + email);
-       System.out.println("\t==========================================/n");
+        System.out.println("\t==========================================/n");
     }
 
 }

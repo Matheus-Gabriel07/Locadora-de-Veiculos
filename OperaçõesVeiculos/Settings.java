@@ -1,10 +1,13 @@
 package OperaçõesVeiculos;
 
+import java.util.Scanner;
+
 public class Settings {
     public static void start(){}
     public void timeDelay(int millis){}
 }
 class Delay extends Settings{
+    Scanner scanner = new Scanner(System.in);
     @Override
     public void timeDelay(int millis){
         try {
@@ -17,4 +20,10 @@ class Delay extends Settings{
             System.out.println();
         }
     }
+    public void clearBuffer(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }    
+    }
 }
+
