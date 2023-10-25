@@ -21,6 +21,9 @@ class Cliente implements OpercoesVeiculos {
     String veiculoAlugado;
     String[] carrosDisponiveis = { "Corsa cromado", "Carro 2", "Carro 3" };
     ArrayList<String> litarCarros = new ArrayList<String>(Arrays.asList(carrosDisponiveis));
+    
+    ArrayList<Object> carrosTotais = new ArrayList<Object>(Arrays.asList());
+
     Scanner sc = new Scanner(System.in);
 
     public Cliente(String nome, int idade, String veiculoAlugado) {
