@@ -1,3 +1,12 @@
+/** Classe base 'Locadora' principal que invocada e agrupa todas as outras classes
+ * ------------------------
+ * 
+ * @version 1.4
+ * @author Kaique
+ * @author Matheus
+ * @author Willian
+*/
+
 import java.util.*;
 
 public class Locadora {

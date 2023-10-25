@@ -6,6 +6,7 @@ public interface Settings {
     public void spacePrint(int size);
 
     public void breakPrint();
+    public void login();
 }
 
 class Configuration implements Settings {
