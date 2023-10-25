@@ -8,8 +8,6 @@ public interface OpercoesVeiculos {
 
     public String alugarVeiculos();
 
-    public void devolverVeiculo();
-
     public void abastecerVeiculo();
 
     public void consultarInformacoes();
@@ -83,11 +81,6 @@ class Cliente implements OpercoesVeiculos {
         return "Carro não alugado";
     }
 
-    public void devolverVeiculo() {
-        String retorno = alugarVeiculos();
-        System.out.println(retorno + "Teste");
-    }
-
     @Override
     public void abastecerVeiculo() {
         double litrosGastado = 10;
@@ -117,6 +110,7 @@ class Cliente implements OpercoesVeiculos {
 
     }
 
+    @Override
     public void consultarInformacoes() {
         /*
          * Nome do clinete:
