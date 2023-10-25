@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public interface OpercoesVeiculos {
 
-    public void alugarVeiculos();
+    public void alugarEDevolverVeiculos();
 
     public void abastecerVeiculo();
 
@@ -111,7 +111,9 @@ class Cliente implements OpercoesVeiculos {
     }
 
     @Override
-    public void alugarVeiculos() {
+    public void alugarEDevolverVeiculos() {
+        String veicloAlugado = null;
+
         System.out.println("Você deseja alugar ou devolver um veículo?\n" +
                 "1- Alugar\n" +
                 "2- Devolver");
@@ -137,7 +139,8 @@ class Cliente implements OpercoesVeiculos {
                     System.out.println("Carro Alugado");
                     listarCarros.remove(carroAlugar);
                     System.out.println(listarCarros);
-                    System.out.println(carroAlugar);
+                    veicloAlugado = carroAlugar;
+
                 } else if (teste == false) {
                     System.out.println("Carro inexistente");
                 }
@@ -147,19 +150,28 @@ class Cliente implements OpercoesVeiculos {
                 delay.timeDelay(1000);
                 System.out.println(listarMotos);
                 delay.timeDelay(1000);
-                String carroAlugar = sc.nextLine();
+                String motoAlugar = sc.nextLine();
 
-                boolean teste = listarMotos.contains(carroAlugar);
+                boolean teste = listarMotos.contains(motoAlugar);
 
                 if (teste == true) {
                     System.out.println("Moto Alugado");
-                    listarMotos.remove(carroAlugar);
+                    listarMotos.remove(motoAlugar);
                     System.out.println(listarMotos);
-                    System.out.println(carroAlugar);
+                    veicloAlugado = motoAlugar;
+                    
+
                 } else if (teste == false) {
                     System.out.println("Moto inexistente");
                 }
             }
+        }
+        if (devolverOuAlugar == 2) {
+           if(veicloAlugado == null) {
+                System.out.println("Não tem veiculos para devolução");
+           } else {
+            
+           }
         }
 
     }
