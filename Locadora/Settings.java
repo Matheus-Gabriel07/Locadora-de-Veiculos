@@ -1,4 +1,4 @@
-package Settings;
+
 
 public interface Settings {
     public void delayTimer(int millis);

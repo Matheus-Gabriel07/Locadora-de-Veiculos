@@ -1,12 +1,12 @@
-package Settings;
 import java.util.*;
 
 public class Locadora {
     Scanner sc = new Scanner(System.in);
+    OpercoesVeiculos opercoesVeiculos = new Cliente(null, 0, null);
     Settings settings = new Configuration();
-    
+
     String[] listaClientes = {};
-    ArrayList<String> arrayListaCliente = new ArrayList<String>(Arrays.asList(listaClientes));
+    ArrayList<Object> arrayListaCliente = new ArrayList<Object>(Arrays.asList(listaClientes));
 
     public void menuInical() {
         boolean loopMenu = true;
@@ -45,6 +45,7 @@ public class Locadora {
                     settings.spacePrint(2);
 
                     // alugar veiculo
+                    opercoesVeiculos.abastecerVeiculo();
                     break;
 
                 case 4:
@@ -52,6 +53,7 @@ public class Locadora {
                     settings.spacePrint(2);
 
                     // devolver veiculo
+                    opercoesVeiculos.devolverVeiculo();
                     break;
 
                 case 5:
@@ -59,6 +61,7 @@ public class Locadora {
                     settings.spacePrint(2);
 
                     // abastecer veiculo
+                    opercoesVeiculos.abastecerVeiculo();
                     break;
 
                 case 6:
@@ -66,6 +69,7 @@ public class Locadora {
                     settings.spacePrint(2);
 
                     // consultar informações
+                    opercoesVeiculos.consultarInformacoes();
                     break;
 
                 case 7:
@@ -99,26 +103,26 @@ public class Locadora {
         sc.close();
     }
 
-    public void cadastrodeVeiculos(){
+    public void cadastrodeVeiculos() {
         System.out.println("Cadatro de veiculos");
         settings.breakPrint();
 
-        System.out.println("Digite o tipo de veiculos \n"+
-        "1) Carro\n" +
-        "2) Moto\n");
+        System.out.println("Digite o tipo de veiculos \n" +
+                "1) Carro\n" +
+                "2) Moto\n");
         int respotaOpcao = sc.nextInt();
 
         switch (respotaOpcao) {
             case 1:
-                
+                Carro carro = new Carro(null, null, respotaOpcao, respotaOpcao, respotaOpcao, respotaOpcao);
                 break;
-        
+
             case 2:
-                
+                Moto moto = new Moto(null, null, respotaOpcao, respotaOpcao, respotaOpcao, respotaOpcao, respotaOpcao);
                 break;
-        
+
             default:
-            System.out.println("Opção inválida");
+                System.out.println("Opção inválida");
                 break;
         }
     }
@@ -129,22 +133,8 @@ public class Locadora {
         settings.delayTimer(500);
         System.out.println("Digite a idade de " + nome);
         int idade = sc.nextInt();
-    }
-
-    public void alugarVeiculo() {
-        //
-    }
-
-    public void devolverVeiculo() {
-        //
-    }
-
-    public void abastecerVeiculos(){
-        //
-    }
-
-    public void consultarInformcoes() {
-        //
+        Cliente cliente = new Cliente(nome, idade, null);
+        arrayListaCliente.add(cliente);
     }
 
     public void buscarVeiculo() {
@@ -152,10 +142,9 @@ public class Locadora {
     }
 
     public void listaDeClientes() {
-        for (String str : arrayListaCliente) {
-            System.out.println("> " + str);
+        for (Object obj : arrayListaCliente) {
+            System.out.println("> " + obj);
         }
     }
-
 
 }
