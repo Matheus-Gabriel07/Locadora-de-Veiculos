@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Locadora {
+    Configuration configuration = new Configuration();
     Scanner sc = new Scanner(System.in);
     OpercoesVeiculos opercoesVeiculos = new Cliente(null, 0, null);
     Settings settings = new Configuration();
@@ -224,6 +225,7 @@ public class Locadora {
     }
 
     public void buscarVeiculo() {
+        configuration.clearBuff(sc);
         System.out.println("Qual veículo você deseja procurar em nossa loja?");
         String buscaVeiculo = sc.nextLine();
 

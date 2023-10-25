@@ -26,6 +26,11 @@ class Configuration implements Settings {
     public void breakPrint() {
         System.out.println("--------------------------------");
     }
+    public void clearBuff(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+    }
 
     public void login() {
         Scanner sc = new Scanner(System.in);
