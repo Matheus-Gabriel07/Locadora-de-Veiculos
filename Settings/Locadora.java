@@ -1,11 +1,14 @@
 package Settings;
+import java.util.*;
 
-import java.util.Scanner;
+public class Locadora {
+    Scanner sc = new Scanner(System.in);
+    Settings settings = new Configuration();
+    
+    String[] listaClientes = {};
+    ArrayList<String> arrayListaCliente = new ArrayList<String>(Arrays.asList(listaClientes));
 
-public class menu {
     public void menuInical() {
-        Scanner sc = new Scanner(System.in);
-        Settings settings = new Configuration();
         boolean loopMenu = true;
 
         do {
@@ -26,46 +29,64 @@ public class menu {
             switch (respotaOpcao) {
                 case 1:
                     settings.delayTimer(1500);
+                    settings.spacePrint(2);
                     // Cadastro de veiculo
                     break;
 
                 case 2:
                     settings.delayTimer(1500);
+                    settings.spacePrint(2);
+                    cadastroClientes();
                     // Cadastro de cliente
                     break;
 
                 case 3:
                     settings.delayTimer(1500);
+                    settings.spacePrint(2);
+
                     // alugar veiculo
                     break;
 
                 case 4:
                     settings.delayTimer(1500);
+                    settings.spacePrint(2);
+
                     // devolver veiculo
                     break;
 
                 case 5:
                     settings.delayTimer(1500);
+                    settings.spacePrint(2);
+
                     // abastecer veiculo
                     break;
 
                 case 6:
                     settings.delayTimer(1500);
+                    settings.spacePrint(2);
+
                     // consultar informações
                     break;
 
                 case 7:
                     settings.delayTimer(1500);
+                    settings.spacePrint(2);
+
                     // Buscar veiculos
                     break;
 
                 case 8:
                     settings.delayTimer(1500);
-                    // lista de clientes
+                    settings.spacePrint(2);
+                    listaDeClientes();
+                    settings.breakPrint();
+                    settings.delayTimer(5000);
+
                     break;
 
                 case 9:
                     System.out.println("Obrigado por alugar conosco");
+                    settings.delayTimer(1000);
                     loopMenu = false;
                     break;
 
@@ -77,4 +98,64 @@ public class menu {
         } while (loopMenu);
         sc.close();
     }
+
+    public void cadastrodeVeiculos(){
+        System.out.println("Cadatro de veiculos");
+        settings.breakPrint();
+
+        System.out.println("Digite o tipo de veiculos \n"+
+        "1) Carro\n" +
+        "2) Moto\n");
+        int respotaOpcao = sc.nextInt();
+
+        switch (respotaOpcao) {
+            case 1:
+                
+                break;
+        
+            case 2:
+                
+                break;
+        
+            default:
+            System.out.println("Opção inválida");
+                break;
+        }
+    }
+
+    public void cadastroClientes() {
+        System.out.println("Digite o nome do alugador");
+        String nome = sc.nextLine();
+        settings.delayTimer(500);
+        System.out.println("Digite a idade de " + nome);
+        int idade = sc.nextInt();
+    }
+
+    public void alugarVeiculo() {
+        //
+    }
+
+    public void devolverVeiculo() {
+        //
+    }
+
+    public void abastecerVeiculos(){
+        //
+    }
+
+    public void consultarInformcoes() {
+        //
+    }
+
+    public void buscarVeiculo() {
+
+    }
+
+    public void listaDeClientes() {
+        for (String str : arrayListaCliente) {
+            System.out.println("> " + str);
+        }
+    }
+
+
 }
