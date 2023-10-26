@@ -1,3 +1,12 @@
+/** Classe de configurações gerais
+ * ------------------------
+ * 
+ * @version 1.2.1
+ * @author Kaique
+ * @author Matheus
+*/
+
+
 import java.util.*;
 
 public interface Settings {

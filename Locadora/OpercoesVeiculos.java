@@ -1,4 +1,9 @@
-
+/** Classe base 'OperaçãoVeiculos' com a subclasse Cliente
+ * ------------------------
+ * 
+ * @version 1.2
+ * @author Kaique
+*/
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +28,8 @@ class Cliente implements OpercoesVeiculos {
     ArrayList<String> litarCarros = new ArrayList<String>(Arrays.asList(carrosDisponiveis));
     
     ArrayList<Object> carrosTotais = new ArrayList<Object>(Arrays.asList());
+    ArrayList<String> carros = new ArrayList<String>(Arrays.asList());
+    ArrayList<String> motos = new ArrayList<String>(Arrays.asList());
 
     Scanner sc = new Scanner(System.in);
 

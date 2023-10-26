@@ -1,7 +1,7 @@
 /** Classe base 'Locadora' principal que invocada e agrupa todas as outras classes
  * ------------------------
  * 
- * @version 1.4
+ * @version 1.5
  * @author Kaique
  * @author Matheus
  * @author Willian
@@ -10,15 +10,21 @@
 import java.util.*;
 
 public class Locadora {
-    Configuration configuration = new Configuration();
     Scanner sc = new Scanner(System.in);
-    OpercoesVeiculos opercoesVeiculos = new Cliente(null, 0, null);
+    Configuration configuration = new Configuration();
     Settings settings = new Configuration();
+
+    OpercoesVeiculos opercoesVeiculos = new Cliente(null, 0, null);
     OpercoesVeiculos opera;
 
     String[] listaClientes = {};
     ArrayList<Object> arrayListaCliente = new ArrayList<Object>(Arrays.asList(listaClientes));
-    ArrayList<Object> veiculosTotais = new ArrayList<Object>(Arrays.asList());
+    String[] listaTodosVeiculos = {};
+    ArrayList<Object> veiculosTotais = new ArrayList<Object>(Arrays.asList(listaTodosVeiculos));
+    String[] listaTodosCarros = {};
+    ArrayList<Object> arrayCarros = new ArrayList<Object>(Arrays.asList(listaTodosCarros));
+    String[] listaTodasMotos = {};
+    ArrayList<Object> arrayMotos = new ArrayList<Object>(Arrays.asList(listaTodasMotos));
 
     public  void start(String usuario) {
         menuInical();
@@ -159,6 +165,7 @@ public class Locadora {
                     Carro carro = new Carro(marca, modelo, ano, combustivel, portas, quilometros);
 
                     veiculosTotais.add(carro);
+                    arrayCarros.add(carro);
 
                     settings.spacePrint(3);
                     System.out.println("Deseja adicionar um novo carro? \n" +
@@ -196,6 +203,7 @@ public class Locadora {
                     double quilometros = sc.nextDouble();
                     Moto moto = new Moto(marca, modelo, ano, combustivel, cilindrada, quilometros);
                     veiculosTotais.add(moto);
+                    arrayMotos.add(moto);
 
                     settings.spacePrint(3);
                     System.out.println("Deseja adicionar um novo carro? \n" +
