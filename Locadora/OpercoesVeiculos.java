@@ -2,43 +2,35 @@
 /** Classe base 'OperaçãoVeiculos' com a subclasse Cliente
  * ------------------------
  * 
- * @version 1.3
+ * @version 1.4
  * @author Kaique
 */
-
-// TODO - FAZER CONSULTA DE INFORMAÇÕES
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public interface OpercoesVeiculos {
-
     public void alugarEDevolverVeiculos();
 
-    public String alugarVeiculos();
-    public void devolverVeiculo();
     public void abastecerVeiculo();
+
     public void consultarInformacoes();
 }
 
 class Cliente implements OpercoesVeiculos {
-    Locadora locadora = new Locadora();
-
-    
     Configuration delay = new Configuration();
-    String nome;
-    int idade;
-    String veiculoAlugado;
+    Locadora locadora = new Locadora();
     Scanner sc = new Scanner(System.in);
-    
+
     String[] carrosDisponiveis = { "Corsa cromado", "Carro 2", "Carro 3" };
     ArrayList<String> litarCarros = new ArrayList<String>(Arrays.asList(carrosDisponiveis));
-    
+
     ArrayList<Object> carrosTotais = new ArrayList<Object>(Arrays.asList());
     ArrayList<String> carros = new ArrayList<String>(Arrays.asList());
     ArrayList<String> motos = new ArrayList<String>(Arrays.asList());
-    
+
+    // Atribuição e construção da classe
     private String nome;
     int idade;
     String veiculoAlugado;
@@ -53,7 +45,7 @@ class Cliente implements OpercoesVeiculos {
 
         this.nome = nome;
 
-        if(veiculoAlugado != null) {
+        if (veiculoAlugado != null) {
             this.veiculoAlugado = veiculoAlugado;
         } else {
             this.veiculoAlugado = "Nenhum veiculo alugado.";
@@ -90,7 +82,7 @@ class Cliente implements OpercoesVeiculos {
 
     @Override
     public void alugarEDevolverVeiculos() {
-        String veicloAlugado = null;
+        String veicloAlugado = "";
 
         System.out.println("Você deseja alugar ou devolver um veículo?\n" +
                 "1- Alugar\n" +
@@ -115,13 +107,13 @@ class Cliente implements OpercoesVeiculos {
 
                 if (teste == true) {
                     System.out.println("Carro Alugado");
-                    
+
                     locadora.listaDeBusca.remove(carroAlugar);
                     locadora.arrayCarros.remove(carroAlugar);
                     locadora.veiculosTotais.remove(carroAlugar);
-                    
+
                     System.out.println(locadora.arrayCarros);
-                    
+
                     veicloAlugado = carroAlugar;
 
                 } else if (teste == false) {
@@ -139,8 +131,7 @@ class Cliente implements OpercoesVeiculos {
 
                 if (teste == true) {
                     System.out.println("Moto Alugado");
-                
-                    
+
                     locadora.arrayMotos.remove(motoAlugar);
                     locadora.listaDeBusca.remove(motoAlugar);
                     locadora.veiculosTotais.remove(motoAlugar);
@@ -157,7 +148,7 @@ class Cliente implements OpercoesVeiculos {
             String defaultLogin = "123456";
             String defaultSenha = "1234";
             if (veicloAlugado == null) {
-                //System.out.println("Não tem veiculos para devolução");
+                // System.out.println("Não tem veiculos para devolução");
             } else {
                 boolean padraoLogin = true;
                 boolean padraoSenha = true;
@@ -183,33 +174,8 @@ class Cliente implements OpercoesVeiculos {
                         System.out.println("login invalida");
                     }
                 }
-
             }
-
-=======
-    public String alugarVeiculos() {
-        System.out.println(litarCarros);
-        System.out.println("Digite o nome do carro que você deseja comprar");
-        String carroAlugar = sc.nextLine();
-
-        boolean validarBusca = litarCarros.contains(carroAlugar);
-
-        if (validarBusca == true) {
-            System.out.println("Carro Alugado");
-            litarCarros.remove(carroAlugar);
-            System.out.println(litarCarros);
-            System.out.println(carroAlugar);
-            return carroAlugar;
-
-        } else if (validarBusca == false) {
-            System.out.println("Carro inexistente");
-            return "Carro inexistente ";
         }
-
-    @Override
-    public void devolverVeiculo() {
-        String retorno = alugarVeiculos();
-        System.out.println(retorno + "Teste");
     }
 
     @Override
@@ -221,7 +187,12 @@ class Cliente implements OpercoesVeiculos {
 
     @Override
     public void consultarInformacoes() {
-        System.out.println("Olá mundo");
+        System.out.println("\t---------- Informações Pessoais ----------\n" +
+                "\nNome: " + this.nome +
+                "\nIdade: " + this.idade +
+                "\nVeiculos alugados: " + this.veiculoAlugado +
+                "\t--------------------------------\n\n");
+        delay.delayTimer(750);
     }
 
     /* Métodos exclusivos da subclass */
