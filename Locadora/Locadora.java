@@ -8,10 +8,9 @@
  * @author Willian
 */
 
-// TODO - AJUSTAR OPÇÃO MENU INICIAL DE LISTAR CLIENTES PARA 'IMFORMAÇÕES'; 
+// TODO - AJUSTAR OPÇÃO MENU INICIAL DE LISTAR CLIENTES PARA 'InFORMAÇÕES'; 
 // TODO - INTRODUZIR SISTEMA DE PAGAMENTO PARA ALGUEL DE VEICULOS;
 // TODO - CASO TENHA TEMPO, FAZER ADM, E MUDAR TODA ESTRURA DE MENU;
-// TODO - EASTER EGG
 
 import java.util.*;
 
@@ -67,7 +66,7 @@ public class Locadora {
                     "\t 5) Abastecer Veículo\n" +
                     "\t 6) Consultar Informações\n" +
                     "\t 7) Buscar Veículo\n" +
-                    "\t 8) Lista de Clientes\n" +
+                    "\t 8) Informações Gerais\n" +
                     "\t 9) Sair\n" +
                     "\t--------------------------------\n\n" +
                     "Digite a opção desejada.\n");
@@ -126,7 +125,7 @@ public class Locadora {
                 case 8:
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
-                    listaDeClientes();
+                    listas();
                     settings.breakPrint();
                     settings.delayTimer(5000);
                     break;
@@ -302,6 +301,55 @@ public class Locadora {
         } else {
             for (Object cliente : arrayListaCliente) {
                 System.out.println(cliente.toString());
+            }
+        }
+    }
+
+    public void listaVeiculos(int opcaoDeLista) {
+
+    }
+
+    public void listas() {
+        int loopListas = 1;
+        while (loopListas != 0) {
+            System.out.println("\t---------- Informações ----------\n" +
+                    "\t1) Lista de clientes\n" +
+                    "\t2) Lista de veiculos\n" +
+                    "\t3) Voltar\n");
+            int respotaOpcao = sc.nextInt();
+
+            if (respotaOpcao == 1) {
+                settings.delayTimer(750);
+                listaDeClientes();
+            } else if (respotaOpcao == 2) {
+                settings.delayTimer(750);
+                while (loopListas != 4) {
+                    settings.breakPrint();
+                    System.out.println("\t---------- Informações dos Veiculos ----------\n" +
+                            "\t1) Lista de Carros\n" +
+                            "\t2) Lista de Motos\n" +
+                            "\t3) Lista de todos Veiculos\n" +
+                            "\t4) Voltar\n");
+                    respotaOpcao = sc.nextInt();
+                    if(respotaOpcao == 1) {
+                        //Void de lista de Carros
+                        listaVeiculos(2);
+                    } else if (respotaOpcao == 2) {
+                        //Void de lista de motos
+                        listaVeiculos(2);
+                    } else if (respotaOpcao == 3) {
+                        //Void de lista do veiculos
+                        listaVeiculos(1);
+                    } else if (respotaOpcao == 4) {
+                        loopListas = 4;
+                    } else {
+                        System.out.println("Opção invalida.");
+                    }
+                }
+            } else if (respotaOpcao == 3) {
+                loopListas = 0;
+            } else {
+                System.out.println("Opção inválida.");
             }
         }
     }
