@@ -207,8 +207,10 @@ public class Locadora {
         switch (respotaOpcao) {
             case 1:
                 do {
+                    configuration.clearBuff(sc);
                     System.out.println("Digite a marca do carro:");
                     String marca = sc.nextLine();
+                    configuration.clearBuff(sc);
                     System.out.println("Digite o modelo do carro:");
                     String modelo = sc.nextLine();
                     System.out.println("Digite o ano de fabricação do carro:");
@@ -246,8 +248,10 @@ public class Locadora {
 
             case 2:
                 do {
+                    configuration.clearBuff(sc);
                     System.out.println("Digite a marca da moto:");
                     String marca = sc.nextLine();
+                    configuration.clearBuff(sc);
                     System.out.println("Digite o modelo da moto:");
                     String modelo = sc.nextLine();
                     System.out.println("Digite o ano de fabricação da moto:");
@@ -346,7 +350,7 @@ public class Locadora {
 
         configuration.clearBuff(sc);
 
-        System.out.println(veiculosTotais);
+        System.out.println(veiculosTotais.toString());
         System.out.println("Qual veículo você deseja procurar em nossa loja?");
         String buscaVeiculo = sc.nextLine();
 
