@@ -21,6 +21,10 @@ public interface OpercoesVeiculos {
 }
 
 class Cliente implements OpercoesVeiculos {
+    Locadora locadora = new Locadora();
+
+    
+
     String nome;
     int idade;
     String veiculoAlugado;
@@ -71,7 +75,7 @@ class Cliente implements OpercoesVeiculos {
 
     @Override
     public String alugarVeiculos() {
-        System.out.println(litarCarros);    
+       System.out.println(locadora.arrayCarros);   
         System.out.println("Digite o nome do carro que você deseja comprar");
         String carroAlugar = sc.nextLine();
         
