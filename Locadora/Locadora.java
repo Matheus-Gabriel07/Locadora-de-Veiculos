@@ -15,7 +15,7 @@ public class Locadora {
     Configuration configuration = new Configuration();
     Settings settings = new Configuration();
 
-    OpercoesVeiculos opercoesVeiculos = new Cliente(null, 0, null);
+    OpercoesVeiculos opercoesVeiculos;
 
     String[] listaClientes = {};
     ArrayList<Object> arrayListaCliente = new ArrayList<Object>(Arrays.asList(listaClientes));
@@ -45,14 +45,9 @@ public class Locadora {
     Moto pcx = new Moto("Honda", "PCX", 2022, 100, 100, 60000);
     Moto ninja = new Moto("Kawasaki", "Ninja", 2015, 100, 300, 200000);
     Moto z1000 = new Moto("Kawasaki", "Z 1000", 2019, 100, 1000, 300000);
-    // Moto gs = new Moto("BMW", "GS", 2017, 100, 500, 30000);
+    //Moto gs = new Moto("BMW", "GS", 2017, 100, 500, 30000);
 
     public void start(String usuario) {
-        menuInical();
-    }
-
-    public void menuInical() {
-
         Carro ferrari = new Carro("Ferrari", "F40", 2010, 100, 2, 2000);
         Carro palio = new Carro("Fiat", "Pálio", 2007, 100, 4, 230000);
         Carro prisma = new Carro("Chevrolet", "Prisma", 2015, 100, 4, 150000);
@@ -76,6 +71,12 @@ public class Locadora {
         veiculosTotais.add(prisma);
         veiculosTotais.add(civic);
         veiculosTotais.add(bmw);
+
+        menuInical();
+
+    }
+
+    public void menuInical() {
 
         boolean loopMenu = true;
 
