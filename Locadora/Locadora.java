@@ -1,11 +1,16 @@
+
 /** Classe base 'Locadora' principal que invocada e agrupa todas as outras classes
  * ------------------------
  * 
- * @version 1.5
+ * @version 1.5.3
  * @author Kaique
  * @author Matheus
  * @author Willian
 */
+
+// TODO - AJUSTAR OPÇÃO MENU INICIAL DE LISTAR CLIENTES PARA 'IMFORMAÇÕES'; 
+// TODO - INTRODUZIR SISTEMA DE PAGAMENTO PARA ALGUEL DE VEICULOS;
+// TODO - CASO TENHA TEMPO, FAZER ADM, E MUDAR TODA ESTRURA DE MENU;
 
 import java.util.*;
 
@@ -17,20 +22,27 @@ public class Locadora {
     OpercoesVeiculos opercoesVeiculos = new Cliente(null, 0, null);
     OpercoesVeiculos opera;
 
-    String[] listaClientes = {};
+    Object[] listaClientes = {};
     ArrayList<Object> arrayListaCliente = new ArrayList<Object>(Arrays.asList(listaClientes));
+
     String[] listaTodosVeiculos = {};
     ArrayList<Object> veiculosTotais = new ArrayList<Object>(Arrays.asList(listaTodosVeiculos));
+
     String[] listaTodosCarros = {};
     ArrayList<Object> arrayCarros = new ArrayList<Object>(Arrays.asList(listaTodosCarros));
+
     String[] listaTodasMotos = {};
     ArrayList<Object> arrayMotos = new ArrayList<Object>(Arrays.asList(listaTodasMotos));
 
-    public  void start(String usuario) {
-        menuInical();
+    public void start(String usuario) {
+        Cliente usarioLogin = new Cliente(usuario, 25, null);
+        arrayListaCliente.add(usarioLogin);
+        menuInical(usuario);
     }
 
-    public void menuInical() {
+    public void menuInical(String usuario) {
+        Cliente usarioLogin = new Cliente(usuario, 25, null);
+
         Carro ferrari = new Carro("Ferrari", "F40", 2010, 100, 2, 2000);
         Carro palio = new Carro("Fiat", "Pálio", 2007, 100, 4, 230000);
         Carro prisma = new Carro("Chevrolet", "Prisma", 2015, 100, 4, 150000);
@@ -61,67 +73,64 @@ public class Locadora {
             int respotaOpcao = sc.nextInt();
 
             switch (respotaOpcao) {
+                // Cadastro de veiculo
                 case 1:
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
-                    // Cadastro de veiculo
                     break;
 
+                // Cadastro de cliente
                 case 2:
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
                     cadastroClientes();
-                    // Cadastro de cliente
                     break;
 
+                // Alugar veiculo
                 case 3:
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
-
-                    // alugar veiculo
                     opercoesVeiculos.abastecerVeiculo();
                     break;
 
+                // Devolver veiculo
                 case 4:
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
-
-                    // devolver veiculo
                     opercoesVeiculos.devolverVeiculo();
                     break;
 
+                // Abastecer veiculo
                 case 5:
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
-
-                    // abastecer veiculo
                     opercoesVeiculos.abastecerVeiculo();
                     break;
 
+                // Consultar informações
                 case 6:
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
-
-                    // consultar informações
-                    opercoesVeiculos.consultarInformacoes();
+                    usarioLogin.consultarInformacoes();
                     break;
 
+                // Buscar algum veículo
                 case 7:
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
-
                     buscarVeiculo();
                     break;
 
+                // Exibir lista de clientes
                 case 8:
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
                     listaDeClientes();
                     settings.breakPrint();
                     settings.delayTimer(5000);
-
                     break;
 
+                // Encerração de programa
                 case 9:
                     System.out.println("Obrigado por alugar conosco");
                     settings.delayTimer(1000);
@@ -232,13 +241,46 @@ public class Locadora {
     }
 
     public void cadastroClientes() {
-        System.out.println("Digite o nome do alugador");
-        String nome = sc.nextLine();
-        settings.delayTimer(500);
-        System.out.println("Digite a idade de " + nome);
-        int idade = sc.nextInt();
-        Cliente cliente = new Cliente(nome, idade, null);
-        arrayListaCliente.add(cliente);
+        int loopCadatroCliente = 1;
+        while (loopCadatroCliente != 0) {
+            System.out.println("Digite o nome do alugador");
+            String nome = sc.next();
+            settings.delayTimer(500);
+            System.out.println("Digite a idade de " + nome);
+            int idade = sc.nextInt();
+            if (idade < 18) {
+                System.out.println("Não é possivel cadastrar este cliente. Idade insuficiente.");
+                settings.delayTimer(500);
+                settings.spacePrint(3);
+                break;
+            } else {
+                Cliente cliente = new Cliente(nome, idade, null);
+                arrayListaCliente.add(cliente);
+                for (int i = 0; i < listaClientes.length; i++) {
+                    if (listaClientes[i] == null) {
+                        listaClientes[i] = cliente;
+                        break;
+                    }
+                }
+                settings.spacePrint(3);
+                System.out.println("Deseja adicionar um novo cliente? \n" +
+                        "1) Sim\n" +
+                        "2) Não\n");
+                int respotaOpcaoCadastro = sc.nextInt();
+
+                if (respotaOpcaoCadastro == 1) {
+                    settings.delayTimer(750);
+                    settings.spacePrint(5);
+                    loopCadatroCliente = 1;
+                } else if (respotaOpcaoCadastro == 2) {
+                    settings.delayTimer(750);
+                    settings.spacePrint(5);
+                    loopCadatroCliente = 0;
+                } else {
+                    System.out.println("Opção inválida. Cancelando adição de um novo veiculo.");
+                }
+            }
+        }
     }
 
     public void buscarVeiculo() {
@@ -251,13 +293,15 @@ public class Locadora {
         if (verificarVeiculo == true) {
             System.out.println("Veiculo dispónivel na loja.");
         }
-
     }
 
     public void listaDeClientes() {
-        for (Object obj : arrayListaCliente) {
-            System.out.println("> " + obj);
+        if (arrayListaCliente.size() == 0) {
+            System.out.println("Não há clientes cadastrados");
+        } else {
+            for (Object cliente : arrayListaCliente) {
+                System.out.println(cliente.toString());
+            }
         }
     }
-
 }
