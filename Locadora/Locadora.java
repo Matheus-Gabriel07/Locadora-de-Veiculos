@@ -119,7 +119,7 @@ public class Locadora {
             System.out.println("\t---------- Locadora ----------\n" +
                     "\t 1) Cadastrar Veiculo\n" +
                     "\t 2) Cadastrar Cliente\n" +
-                    "\t 3) Aluguar & Devolver Veículo\n" +
+                    "\t 3) Alugar & Devolver Veículo\n" +
                     "\t 4) Abastecer Veículo\n" +
                     "\t 5) Consultar Informações\n" +
                     "\t 6) Buscar Veículo\n" +
@@ -155,7 +155,7 @@ public class Locadora {
                 case 4:
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
-                    opercoesVeiculos.abastecerVeiculo();
+                    usarioLogin.abastecerVeiculo();
                     break;
 
                 // Consultar informações

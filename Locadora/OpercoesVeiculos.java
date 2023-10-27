@@ -82,8 +82,6 @@ class Cliente implements OpercoesVeiculos {
 
     @Override
     public void alugarEDevolverVeiculos() {
-        String veicloAlugado = "";
-
         System.out.println("Você deseja alugar ou devolver um veículo?\n" +
                 "1- Alugar\n" +
                 "2- Devolver");
@@ -101,6 +99,7 @@ class Cliente implements OpercoesVeiculos {
                 delay.delayTimer(1000);
                 locadora.listarCarros();
                 delay.delayTimer(1000);
+                System.out.println("Qual carro você deseja alugar?");
                 String carroAlugar = sc.nextLine();
 
                 boolean teste = locadora.listaDeBusca.contains(carroAlugar);
@@ -112,10 +111,7 @@ class Cliente implements OpercoesVeiculos {
                     locadora.arrayCarros.remove(carroAlugar);
                     locadora.veiculosTotais.remove(carroAlugar);
 
-                    System.out.println(locadora.arrayCarros);
-
-                    veicloAlugado = carroAlugar;
-
+                    setVeiculoAlugado(carroAlugar);
                 } else if (teste == false) {
                     System.out.println("Carro inexistente");
                 }
@@ -136,8 +132,7 @@ class Cliente implements OpercoesVeiculos {
                     locadora.listaDeBusca.remove(motoAlugar);
                     locadora.veiculosTotais.remove(motoAlugar);
 
-                    System.out.println(locadora.listaDeBusca);
-                    veicloAlugado = motoAlugar;
+                    setVeiculoAlugado(motoAlugar);
 
                 } else if (teste == false) {
                     System.out.println("Moto inexistente");
@@ -145,10 +140,11 @@ class Cliente implements OpercoesVeiculos {
             }
         }
         if (devolverOuAlugar == 2) {
-            String defaultLogin = "123456";
-            String defaultSenha = "1234";
-            if (veicloAlugado == null) {
-                // System.out.println("Não tem veiculos para devolução");
+            String defaultLogin = getNome();
+            String defaultSenha = "123";
+
+        if (getVeiculoAlugado() == "Nenhum veiculo alugado.") {
+                System.out.println("Não tem veiculos para devolução");
             } else {
                 boolean padraoLogin = true;
                 boolean padraoSenha = true;
@@ -191,7 +187,7 @@ class Cliente implements OpercoesVeiculos {
                 "\nNome: " + this.nome +
                 "\nIdade: " + this.idade +
                 "\nVeiculos alugados: " + this.veiculoAlugado +
-                "\t--------------------------------\n\n");
+                "\n\t--------------------------------\n\n");
         delay.delayTimer(750);
     }
 

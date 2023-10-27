@@ -49,7 +49,7 @@ class Configuration implements Settings {
 
     public void login() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Seja bem-vindo ao NOME_APLICAÇÃO");
+        System.out.println("Seja bem-vindo ao Roda Sobre Roda");
         delayTimer(750);
         spacePrint(10);
         System.out.println("Digite o nome de usuário:");
