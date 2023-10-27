@@ -1,3 +1,4 @@
+
 /** Classe de configurações gerais
  * ------------------------
  * 
@@ -6,14 +7,11 @@
  * @author Matheus
 */
 
-
 import java.util.*;
 
 public interface Settings {
     public void delayTimer(int millis);
-
     public void spacePrint(int size);
-
     public void breakPrint();
     public void login();
 }
@@ -36,10 +34,17 @@ class Configuration implements Settings {
     public void breakPrint() {
         System.out.println("--------------------------------");
     }
+
     public void clearBuff(Scanner scanner) {
         if (scanner.hasNextLine()) {
             scanner.nextLine();
         }
+    }
+
+    private String passSecretsEsterEgg = "Gustavo-Molina17";
+    
+    public String getpassSecretsEsterEgg() {
+        return passSecretsEsterEgg;
     }
 
     public void login() {
@@ -54,13 +59,18 @@ class Configuration implements Settings {
         delayTimer(1000);
         spacePrint(10);
 
-        System.out.println("Seja bem-vindo " + nome);
-        breakPrint();
-        spacePrint(2);
+        if (nome.equals(getpassSecretsEsterEgg())) {
+            System.out.println("Usuario inválido. Encerrando programa.");
+            System.exit(0);
+        } else {
+            System.out.println("Seja bem-vindo " + nome);
+            breakPrint();
+            spacePrint(2);
 
-        Locadora locadora = new Locadora();
-        locadora.start(nome);
-        senha.endsWith(senha);
+            Locadora locadora = new Locadora();
+            locadora.start(nome);
+            senha.endsWith(senha);
+        }
         sc.close();
     }
 }

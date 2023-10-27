@@ -43,7 +43,4 @@ public class Moto extends Veiculo {
                 "Cilindradas: " + getCilindrada() + "\n" +
                 "Km/L: " + calcularConsumo() + "\n";
     }
-
-    /* Métodos exclusivos da subclass */
-
 }
