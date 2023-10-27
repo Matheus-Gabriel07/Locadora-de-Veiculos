@@ -11,9 +11,7 @@ import java.util.Scanner;
 
 public interface OpercoesVeiculos {
 
-    public String alugarVeiculos();
-
-    public void devolverVeiculo();
+    public void alugarEDevolverVeiculos();
 
     public void abastecerVeiculo();
 
@@ -24,7 +22,7 @@ class Cliente implements OpercoesVeiculos {
     Locadora locadora = new Locadora();
 
     
-
+    Configuration delay = new Configuration();
     String nome;
     int idade;
     String veiculoAlugado;
@@ -74,30 +72,105 @@ class Cliente implements OpercoesVeiculos {
     }
 
     @Override
-    public String alugarVeiculos() {
-       System.out.println(locadora.arrayCarros);   
-        System.out.println("Digite o nome do carro que você deseja comprar");
-        String carroAlugar = sc.nextLine();
-        
-        boolean teste = litarCarros.contains(carroAlugar);
+    public void alugarEDevolverVeiculos() {
+        String veicloAlugado = null;
 
-        if (teste == true) {
-            System.out.println("Carro Alugado");
-            litarCarros.remove(carroAlugar);
-            System.out.println(litarCarros);
-            System.out.println(carroAlugar);
-            return carroAlugar;
+        System.out.println("Você deseja alugar ou devolver um veículo?\n" +
+                "1- Alugar\n" +
+                "2- Devolver");
+        int devolverOuAlugar = sc.nextInt();
 
-        } else if (teste == false) {
-            System.out.println("Carro inexistente");
-            return "Carro inexistente "; 
+        if (devolverOuAlugar == 1) {
+            System.out.println("Você deseja alugar um carro ou uma moto?\n" +
+                    "1- Carro \n" +
+                    "2- Moto");
+            int alugarCarroOuMoto = sc.nextInt();
+            delay.clearBuff(sc);
+
+            if (alugarCarroOuMoto == 1) {
+                System.out.println("Qual carro você deseja alugar?");
+                delay.delayTimer(1000);
+                locadora.listarCarros();
+                delay.delayTimer(1000);
+                String carroAlugar = sc.nextLine();
+
+                boolean teste = locadora.listaDeBusca.contains(carroAlugar);
+
+                if (teste == true) {
+                    System.out.println("Carro Alugado");
+                    
+                    locadora.listaDeBusca.remove(carroAlugar);
+                    locadora.arrayCarros.remove(carroAlugar);
+                    locadora.veiculosTotais.remove(carroAlugar);
+                    
+                    System.out.println(locadora.arrayCarros);
+                    
+                    veicloAlugado = carroAlugar;
+
+                } else if (teste == false) {
+                    System.out.println("Carro inexistente");
+                }
+            }
+            if (alugarCarroOuMoto == 2) {
+                System.out.println("Qual moto você deseja alugar?");
+                delay.delayTimer(1000);
+                locadora.listarMotos();
+                delay.delayTimer(1000);
+                String motoAlugar = sc.nextLine();
+
+                boolean teste = locadora.listaDeBusca.contains(motoAlugar);
+
+                if (teste == true) {
+                    System.out.println("Moto Alugado");
+                
+                    
+                    locadora.arrayMotos.remove(motoAlugar);
+                    locadora.listaDeBusca.remove(motoAlugar);
+                    locadora.veiculosTotais.remove(motoAlugar);
+
+                    System.out.println(locadora.listaDeBusca);
+                    veicloAlugado = motoAlugar;
+
+                } else if (teste == false) {
+                    System.out.println("Moto inexistente");
+                }
+            }
         }
-        return "Carro não alugado";
-    }
+        if (devolverOuAlugar == 2) {
+            String defaultLogin = "123456";
+            String defaultSenha = "1234";
+            if (veicloAlugado == null) {
+                //System.out.println("Não tem veiculos para devolução");
+            } else {
+                boolean padraoLogin = true;
+                boolean padraoSenha = true;
+                while (padraoLogin) {
+                    System.out.println("Por favor inserir seu login: ");
+                    String login = sc.nextLine();
+                    boolean verifica = login.equals(defaultLogin);
+                    if (verifica) {
+                        padraoLogin = false;
+                        while (padraoSenha) {
+                            System.out.println("Por favor inserir a senha de segurança: ");
+                            String senha = sc.nextLine();
+                            boolean verificarSenha = senha.equals(defaultSenha);
+                            if (verificarSenha) {
+                                System.out.println("**VEICULO DEVOLVIDO COM SUCESSO**");
+                                padraoSenha = false;
+                            } else if (verificarSenha == false) {
+                                System.out.println("Senha incorreta");
+                            }
+                        }
 
-    public void devolverVeiculo() {
-        String retorno = alugarVeiculos();
-        System.out.println(retorno + "Teste");
+                    } else if (verifica == false) {
+                        System.out.println("login invalida");
+                    }
+                }
+
+            }
+
+        }
+
     }
 
     @Override
