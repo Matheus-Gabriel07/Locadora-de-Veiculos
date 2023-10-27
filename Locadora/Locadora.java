@@ -19,8 +19,7 @@ public class Locadora {
     Configuration configuration = new Configuration();
     Settings settings = new Configuration();
 
-    OpercoesVeiculos opercoesVeiculos = new Cliente(null, 0, null);
-    OpercoesVeiculos opera;
+    OpercoesVeiculos opercoesVeiculos;
 
     Object[] listaClientes = {};
     ArrayList<Object> arrayListaCliente = new ArrayList<Object>(Arrays.asList(listaClientes));
@@ -33,6 +32,15 @@ public class Locadora {
 
     String[] listaTodasMotos = {};
     ArrayList<Object> arrayMotos = new ArrayList<Object>(Arrays.asList(listaTodasMotos));
+
+
+    // Array com a lista de busca
+    String[] buscaVeiculos = {};
+    ArrayList<String> listaDeBusca = new ArrayList<String>(Arrays.asList(buscaVeiculos));
+
+    // Array contendo todos os veiculos (Carro e Moto).
+    String[] listaTodosVeiculos = {};
+    ArrayList<Object> veiculosTotais = new ArrayList<Object>(Arrays.asList(listaTodosVeiculos));
 
     public void start(String usuario) {
         Cliente usarioLogin = new Cliente(usuario, 25, null);
@@ -49,11 +57,82 @@ public class Locadora {
         Carro civic = new Carro("Honda", "Civic", 2017, 100, 4, 100000);
         Carro bmw = new Carro("BMW", "320i", 2019, 100, 4, 120000);
 
+    // Criando os carros.
+    Carro ferrari = new Carro("Ferrari", "F40", 2010, 100, 2, 2000);
+    Carro palio = new Carro("Fiat", "Pálio", 2007, 100, 4, 230000);
+    Carro prisma = new Carro("Chevrolet", "Prisma", 2015, 100, 4, 150000);
+    Carro civic = new Carro("Honda", "Civic", 2017, 100, 4, 100000);
+    Carro bmw = new Carro("BMW", "320i", 2019, 100, 4, 120000);
+
+    // Criando as motos.
+    Moto gs = new Moto("BMW", "GS", 2017, 100, 500, 30000);
+    Moto pcx = new Moto("Honda", "PCX", 2022, 100, 100, 60000);
+    Moto ninja = new Moto("Kawasaki", "Ninja", 2015, 100, 300, 200000);
+    Moto z1000 = new Moto("Kawasaki", "Z 1000", 2019, 100, 1000, 300000);
+
+    public void start(String usuario) {
+
+        // Variáveis para poder realizar a busca.
+        String validaFerrari = ferrari.getModelo();
+        String validaPalio = palio.getModelo();
+        String validaPrisma = prisma.getModelo();
+        String validaCivic = civic.getModelo();
+        String validaBMW = bmw.getModelo();
+
+        // Variáveis das motos
+        String validaZ1000 = z1000.getModelo();
+        String validaNinja = ninja.getModelo();
+        String validaPCX = pcx.getModelo();
+        String validaGS = gs.getModelo();
+
+        // Adicionando as váriaveis para a lista de busca.
+
+        // Carros
+        listaDeBusca.add(validaFerrari);
+        listaDeBusca.add(validaPalio);
+        listaDeBusca.add(validaPrisma);
+        listaDeBusca.add(validaCivic);
+        listaDeBusca.add(validaBMW);
+
+        // Motos
+        listaDeBusca.add(validaZ1000);
+        listaDeBusca.add(validaNinja);
+        listaDeBusca.add(validaPCX);
+        listaDeBusca.add(validaGS);
+
+        // Adcionando Objetos de Carros e Motos a lista de veículos
+
+        // Carros
         veiculosTotais.add(ferrari);
         veiculosTotais.add(palio);
         veiculosTotais.add(prisma);
         veiculosTotais.add(civic);
+
+        // Motos
         veiculosTotais.add(bmw);
+        veiculosTotais.add(z1000);
+        veiculosTotais.add(ninja);
+        veiculosTotais.add(pcx);
+        veiculosTotais.add(gs);
+
+        // Adicionando Objetos Carros na lista de Carros.
+        arrayCarros.add(ferrari);
+        arrayCarros.add(palio);
+        arrayCarros.add(prisma);
+        arrayCarros.add(civic);
+        arrayCarros.add(bmw);
+
+        // Adcionando Objetos Motos na lista de Motos.
+        arrayMotos.add(z1000);
+        arrayMotos.add(ninja);
+        arrayMotos.add(pcx);
+        arrayMotos.add(gs);
+
+        menuInical();
+
+    }
+
+    public void menuInical() {
 
         boolean loopMenu = true;
 
@@ -62,12 +141,20 @@ public class Locadora {
                     "\t 1) Cadastrar Veiculo\n" +
                     "\t 2) Cadastrar Cliente\n" +
                     "\t 3) Aluguar Veículo\n" +
+
+                    "\t 4) Abastecer Veículo\n" +
+                    "\t 5) Consultar Informações\n" +
+                    "\t 6) Buscar Veículo\n" +
+                    "\t 7) Lista de Clientes\n" +
+                    "\t 8) Sair\n" +
+
                     "\t 4) Delvolver Veículo\n" +
                     "\t 5) Abastecer Veículo\n" +
                     "\t 6) Consultar Informações\n" +
                     "\t 7) Buscar Veículo\n" +
                     "\t 8) Informações Gerais\n" +
                     "\t 9) Sair\n" +
+
                     "\t--------------------------------\n\n" +
                     "Digite a opção desejada.\n");
             int respotaOpcao = sc.nextInt();
@@ -97,7 +184,14 @@ public class Locadora {
                 case 4:
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
-                    opercoesVeiculos.devolverVeiculo();
+
+
+                    // abastecer veiculo
+                    opercoesVeiculos.abastecerVeiculo();
+                    break;
+
+                case 5:
+            opercoesVeiculos.devolverVeiculo();
                     break;
 
                 // Abastecer veiculo
@@ -109,17 +203,25 @@ public class Locadora {
 
                 // Consultar informações
                 case 6:
+
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
                     usarioLogin.consultarInformacoes();
                     break;
 
+
+                case 6:
+
                 // Buscar algum veículo
                 case 7:
+
                     settings.delayTimer(1500);
                     settings.spacePrint(2);
                     buscarVeiculo();
                     break;
+
+
+                case 7:
 
                 // Exibir lista de clientes
                 case 8:
@@ -130,6 +232,8 @@ public class Locadora {
                     settings.delayTimer(5000);
                     break;
 
+
+                case 8:
                 // Encerração de programa
                 case 9:
                     System.out.println("Obrigado por alugar conosco");
@@ -284,18 +388,92 @@ public class Locadora {
     }
 
     public void buscarVeiculo() {
+        String validaFerrari = ferrari.getModelo();
+        String validaPalio = palio.getModelo();
+        String validaPrisma = prisma.getModelo();
+        String validaCivic = civic.getModelo();
+        String validaBMW = bmw.getModelo();
+
+        listaDeBusca.add(validaFerrari);
+        listaDeBusca.add(validaPalio);
+        listaDeBusca.add(validaPrisma);
+        listaDeBusca.add(validaCivic);
+        listaDeBusca.add(validaBMW);
+
         configuration.clearBuff(sc);
+
+        System.out.println(veiculosTotais);
         System.out.println("Qual veículo você deseja procurar em nossa loja?");
         String buscaVeiculo = sc.nextLine();
 
-        boolean verificarVeiculo = veiculosTotais.contains(buscaVeiculo);
+        boolean verificarVeiculo = listaDeBusca.contains(buscaVeiculo);
 
         if (verificarVeiculo == true) {
             System.out.println("Veiculo dispónivel na loja.");
+        } else if (verificarVeiculo == false) {
+            System.out.println("Veículo não disponivel");
         }
     }
 
     public void listaDeClientes() {
+
+
+        for (Object obj : arrayListaCliente) {
+            System.out.println("> " + obj);
+        }
+    }
+
+    public void listarCarros() {
+
+        veiculosTotais.add(ferrari);
+        veiculosTotais.add(palio);
+        veiculosTotais.add(prisma);
+        veiculosTotais.add(civic);
+        veiculosTotais.add(bmw);
+
+        arrayCarros.add(ferrari);
+        arrayCarros.add(palio);
+        arrayCarros.add(prisma);
+        arrayCarros.add(civic);
+        arrayCarros.add(bmw);
+
+        System.out.println(arrayCarros);
+
+    }
+
+    public void listarMotos() {
+        // Adcionando Objetos Motos na lista de Motos.
+        arrayMotos.add(z1000);
+        arrayMotos.add(ninja);
+        arrayMotos.add(pcx);
+        arrayMotos.add(gs);
+
+        // Adcionando Objetos de Carros e Motos a lista de veículos
+
+        // Motos
+        veiculosTotais.add(bmw);
+        veiculosTotais.add(z1000);
+        veiculosTotais.add(ninja);
+        veiculosTotais.add(pcx);
+        veiculosTotais.add(gs);
+        
+        // Adicionando as váriaveis para a lista de busca.
+
+        String validaZ1000 = z1000.getModelo();
+        String validaNinja = ninja.getModelo();
+        String validaPCX = pcx.getModelo();
+        String validaGS = gs.getModelo();
+
+        // Motos
+        listaDeBusca.add(validaZ1000);
+        listaDeBusca.add(validaNinja);
+        listaDeBusca.add(validaPCX);
+        listaDeBusca.add(validaGS);
+
+        System.out.println(listaDeBusca);
+    }
+
+=======
         if (arrayListaCliente.size() == 0) {
             System.out.println("Não há clientes cadastrados");
         } else {
