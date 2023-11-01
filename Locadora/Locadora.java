@@ -335,28 +335,19 @@ public class Locadora {
     }
 
     public void buscarVeiculo() {
-        String validaFerrari = ferrari.getModelo();
-        String validaPalio = palio.getModelo();
-        String validaPrisma = prisma.getModelo();
-        String validaCivic = civic.getModelo();
-        String validaBMW = bmw.getModelo();
-
-        listaDeBusca.add(validaFerrari);
-        listaDeBusca.add(validaPalio);
-        listaDeBusca.add(validaPrisma);
-        listaDeBusca.add(validaCivic);
-        listaDeBusca.add(validaBMW);
-
         configuration.clearBuff(sc);
+        
+        for (String busca : listaDeBusca) {
+            System.out.println("> " + busca);
+        }
 
-        System.out.println(veiculosTotais);
-        System.out.println("Qual veículo você deseja procurar em nossa loja?");
+        System.out.println("Digite o modelo que deseja alugar?");
         String buscaVeiculo = sc.nextLine();
 
         boolean verificarVeiculo = listaDeBusca.contains(buscaVeiculo);
 
         if (verificarVeiculo == true) {
-            System.out.println("Veiculo dispónivel na loja.");
+            System.out.println("Veiculo disponível na loja.");
         } else if (verificarVeiculo == false) {
             System.out.println("Veículo não disponivel");
         }
@@ -373,28 +364,6 @@ public class Locadora {
     }
 
     public void listarMotos() {
-        arrayMotos.add(z1000);
-        arrayMotos.add(ninja);
-        arrayMotos.add(pcx);
-        arrayMotos.add(gs);
-
-        // Motos
-        veiculosTotais.add(bmw);
-        veiculosTotais.add(z1000);
-        veiculosTotais.add(ninja);
-        veiculosTotais.add(pcx);
-        veiculosTotais.add(gs);
-
-        // Adicionando as instancias para a lista de busca.
-        String validaZ1000 = z1000.getModelo();
-        listaDeBusca.add(validaZ1000);
-        String validaNinja = ninja.getModelo();
-        listaDeBusca.add(validaNinja);
-        String validaPCX = pcx.getModelo();
-        listaDeBusca.add(validaPCX);
-        String validaGS = gs.getModelo();
-        listaDeBusca.add(validaGS);
-
         if (arrayMotos.size() == 0) {
             System.out.println("Não há motos cadastradas.");
         } else {

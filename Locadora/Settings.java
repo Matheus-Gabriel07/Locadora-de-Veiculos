@@ -12,6 +12,7 @@ import java.util.*;
 public interface Settings {
     public void delayTimer(int millis);
     public void spacePrint(int size);
+    public void clearBuff(Scanner Scanner);
     public void breakPrint();
     public void login();
 }

@@ -143,7 +143,7 @@ class Cliente implements OpercoesVeiculos {
             String defaultLogin = getNome();
             String defaultSenha = "123";
 
-        if (getVeiculoAlugado() == "Nenhum veiculo alugado.") {
+            if (getVeiculoAlugado() == "Nenhum veiculo alugado.") {
                 System.out.println("Não tem veiculos para devolução");
             } else {
                 boolean padraoLogin = true;
@@ -176,9 +176,13 @@ class Cliente implements OpercoesVeiculos {
 
     @Override
     public void abastecerVeiculo() {
-        double litrosGastado = 10;
-        System.out.println("Você está devolvendo o carro e precisa abastecer antes de devolver.\n" +
-                "Você gastou " + litrosGastado + "L. Abasteça no posto de combústivel mais próximo.");
+        if (getVeiculoAlugado() == "Nenhum veiculo alugado.") {
+            System.out.println("Não há um veículo alugado.");
+        } else {
+            double litrosGastado = 10;
+            System.out.println("Você está devolvendo o carro e precisa abastecer antes de devolver.\n" +
+                    "Você gastou " + litrosGastado + "L. Abasteça no posto de combústivel mais próximo.");
+        }
     }
 
     @Override
@@ -191,8 +195,7 @@ class Cliente implements OpercoesVeiculos {
         delay.delayTimer(750);
     }
 
-    /* Métodos exclusivos da subclass */
-
+    @Override
     public String toString() {
         return "Nome: " + this.nome + ", Idade: " + this.idade + ", Veiculos alugados: " + this.veiculoAlugado;
     }
