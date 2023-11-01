@@ -354,16 +354,24 @@ public class Locadora {
     }
 
     public void listarCarros() {
-        if (arrayCarros.size() == 0) {
-            System.out.println("Não há carros cadastrado.");
-        } else {
-            for (Object listaCarros : arrayCarros) {
-                System.out.println(listaCarros.toString());
-            }
+        // Adicionando Objetos Carros na lista de Carros.
+        arrayCarros.add(ferrari);
+        arrayCarros.add(palio);
+        arrayCarros.add(prisma);
+        arrayCarros.add(civic);
+        arrayCarros.add(bmw);
+
+        for (Object listaCarros : arrayCarros) {
+            System.out.println(listaCarros.toString());
         }
     }
 
     public void listarMotos() {
+        arrayMotos.add(z1000);
+        arrayMotos.add(ninja);
+        arrayMotos.add(pcx);
+        arrayMotos.add(gs);
+        
         if (arrayMotos.size() == 0) {
             System.out.println("Não há motos cadastradas.");
         } else {
