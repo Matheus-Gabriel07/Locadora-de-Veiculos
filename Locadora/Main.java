@@ -7,7 +7,7 @@
  * @author Willian
 */
 
-public class RSR {
+public class Main {
     public static void main(String[] args) {
         Settings settings = new Configuration();
         settings.login();

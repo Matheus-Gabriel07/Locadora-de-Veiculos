@@ -207,6 +207,7 @@ public class Locadora {
         switch (respotaOpcao) {
             case 1:
                 do {
+                    configuration.clearBuff(sc);
                     System.out.println("Digite a marca do carro:");
                     String marca = sc.nextLine();
                     System.out.println("Digite o modelo do carro:");
@@ -223,6 +224,7 @@ public class Locadora {
 
                     veiculosTotais.add(carro);
                     arrayCarros.add(carro);
+                    listaDeBusca.add(modelo);
 
                     settings.spacePrint(3);
                     System.out.println("Deseja adicionar um novo carro? \n" +
@@ -261,6 +263,7 @@ public class Locadora {
                     Moto moto = new Moto(marca, modelo, ano, combustivel, cilindrada, quilometros);
                     veiculosTotais.add(moto);
                     arrayMotos.add(moto);
+                    listaDeBusca.add(modelo);
 
                     settings.spacePrint(3);
                     System.out.println("Deseja adicionar um novo carro? \n" +
@@ -360,30 +363,6 @@ public class Locadora {
     }
 
     public void listarCarros() {
-        veiculosTotais.add(ferrari);
-        veiculosTotais.add(palio);
-        veiculosTotais.add(prisma);
-        veiculosTotais.add(civic);
-        veiculosTotais.add(bmw);
-
-        arrayCarros.add(ferrari);
-        arrayCarros.add(palio);
-        arrayCarros.add(prisma);
-        arrayCarros.add(civic);
-        arrayCarros.add(bmw);
-
-        // Adicionando as instancias para a lista de busca.
-        String validaFerrari = ferrari.getModelo();
-        listaDeBusca.add(validaFerrari);
-        String validaPalio = palio.getModelo();
-        listaDeBusca.add(validaPalio);
-        String validaPrisma = prisma.getModelo();
-        listaDeBusca.add(validaPrisma);
-        String validaCivic = civic.getModelo();
-        listaDeBusca.add(validaCivic);
-        String validaBmw = bmw.getModelo();
-        listaDeBusca.add(validaBmw);
-
         if (arrayCarros.size() == 0) {
             System.out.println("Não há carros cadastrado.");
         } else {
